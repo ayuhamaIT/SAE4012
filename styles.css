@@ -145,10 +145,7 @@ body {
   #active {
     color: #4B0082;
   }
-  
-  ::selection{
-    background-color: #4AC8F4;
-  }
+
 
   #select {
     background-color: #3366CC;
