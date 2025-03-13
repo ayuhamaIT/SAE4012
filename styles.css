@@ -1,0 +1,120 @@
+/* Styles généraux */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin-bottom: 60px;
+  }
+  
+  /* Navbar */
+  .navbar-brand img {
+    height: 40px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Hero Section */
+  .hero {
+    padding: 100px 0;
+  }
+  .hero h2 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .clair {
+    color: #4AC8F4;
+  } 
+
+  h2 {
+    color: #3366CC
+  }
+  
+  /* Bouton principal */
+  .btn-success {
+    background-color: #4DDB78;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+  }
+  .btn-success:hover {
+    background-color: #3aad5d;
+  }
+  
+  /* Contenu principal */
+  main h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  main p {
+    font-size: 1rem;
+    color: #373642;
+  }
+  
+  /* Footer */
+
+  footer {
+    font-size: 0.9rem;
+    background-color: #373642;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  .cart-item img {
+    width: 80px;
+    height: 80px;
+    background: lightgray;
+  }
+  .quantity-control {
+    display: flex;
+    align-items: center;
+  }
+  .quantity-control button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  .summary {
+    border: 2px solid #4B0082;
+    padding: 15px;
+    margin-top: 20px;
+  }
+  .pay-button {
+    background-color: #4DDB78;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+  }
+
+  .pay-button:hover {
+    background-color: #3aad5d
+  }
+
+  #active {
+    color: #4B0082;
+  }
+  
+  #select {
+    background-color: #3366CC;
+    cursor: pointer;
+  }
