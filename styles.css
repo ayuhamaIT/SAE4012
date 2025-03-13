@@ -31,12 +31,17 @@ body {
   }
 
   h2 {
+    color:  #3366CC;
+  }
+
+  #titreClair{
     color: #4AC8F4;
   }
 
-  h3 {
-    color: #3366CC
+  h3{
+    color:#3366CC;
   }
+
   
   /* Bouton principal */
   .btn-success {
@@ -59,6 +64,14 @@ body {
   main p {
     font-size: 1rem;
     color: #373642;
+  }
+
+  #textViolet{
+    color:#4B0082;
+  }
+
+  #textBleuMedecin{
+    color : #3366CC;
   }
   
   /* Footer */
@@ -133,6 +146,10 @@ body {
     color: #4B0082;
   }
   
+  ::selection{
+    background-color: #4AC8F4;
+  }
+
   #select {
     background-color: #3366CC;
     cursor: pointer;
