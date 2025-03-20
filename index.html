@@ -6,6 +6,23 @@
   <title>Lenscreen</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    #gameContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    #gameCanvas {
+      border: 2px solid #333;
+      background-color: #f8f9fa;
+    }
+    #scoreBoard, #leaderboard {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
@@ -25,18 +42,30 @@
     </div>
   </nav>
   
-  <section class="hero text-center text-white py-5" style="background: linear-gradient(135deg, #2b1f47, #1a0e30);">
-    <div class="container">
-      <h2 id="titreClair">Participez à notre jeu concours !!</h2>
-      <button class="btn btn-success mt-3">Jouer</button>
-    </div>
-  </section>
-  
   <!-- Contenu principal -->
   <main class="container my-5 text-center">
     <h3>Le neurolab a pour but de mettre en page des</h3>
     <p>Accédez facilement aux données provenant de la recherche sur le dépistage du spectre autistique chez une population âgée de 2 à 13 ans.</p>
-    <div class="bg-light" style="width: 100%; height: 200px;"></div>
+    
+  <!-- Section Jeu Dogeball -->
+    <section id="gameContainer">
+      <h2 id="titreClair">Participez à notre jeu concours !!</h2>
+      <div id="scoreBoard">Score: 0</div>
+      <div id="leaderboard-container" class="container my-4">
+        <h3 class="text-center">Leaderboard</h3>
+        <table class="table table-striped table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>Rang</th>
+              <th>Pseudo</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-body"><div id="leaderboard"></div></tbody>
+        </table>
+      </div>
+      <canvas id="gameCanvas" width="600" height="400"></canvas>
+    </section>
   </main>
   
   <!-- Section Footer -->
@@ -49,7 +78,7 @@
   </section>
   
   <!-- Footer -->
-  <footer class=" text-white py-3 text-center">
+  <footer class="text-white py-3 text-center">
     <div class="container">
       <p>@Lenscreen. Tous droits réservés</p>
       <small>Produits | FAQ | Qu'est-ce que Lenscreen?</small>
@@ -57,5 +86,6 @@
   </footer>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>
