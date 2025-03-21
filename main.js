@@ -113,8 +113,8 @@ function gameOver() {
 
     sendScore(pseudo, email, score);
     alert("Score: " + score);
-    updateLeaderboard(pseudo, score);
-    setTimeout(() => document.location.reload(), 1000);
+    updateLeaderboard(score);
+    setTimeout(() => document.location.reload(), 5000);
 }
 
 function sendScore(pseudo, email, score) {
@@ -128,68 +128,31 @@ function sendScore(pseudo, email, score) {
     .catch(error => console.error("Erreur fetch:", error));
 }
 
-// Fonction pour mettre à jour le leaderboard
-function updateLeaderboard(pseudo, newScore) {
-    let leaderboardData = JSON.parse(localStorage.getItem("leaderboard")) || [];
-    
-    // Ajouter un objet avec le pseudo et le score
-    leaderboardData.push({ pseudo: pseudo, score: newScore });
-    
-    // Trier par score décroissant
-    leaderboardData.sort((a, b) => b.score - a.score);
-    
-    // Limiter à 5 résultats
-    leaderboardData = leaderboardData.slice(0, 5);
-    
-    // Sauvegarder dans le localStorage avec le pseudo et le score
-    localStorage.setItem("leaderboard", JSON.stringify(leaderboardData));
-    
-    // Mettre à jour l'affichage du leaderboard
-    let leaderboardHTML = "Leaderboard:<br>";
-    leaderboardData.forEach(entry => {
-        leaderboardHTML += `${entry.pseudo} - Score: ${entry.score}<br>`;
-    });
-    
-    document.getElementById("leaderboard").innerHTML = leaderboardHTML;
+function updateLeaderboard(newScore) {
+    let scores = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+    // Vérifie si les scores sont bien sous forme d'objets avec "pseudo"
+    if (!Array.isArray(scores)) {
+        scores = [];
+    } else {
+        scores = scores.map(entry => typeof entry === "object" && entry.pseudo !== undefined ? entry : { pseudo: 0 });
+    }
+
+    // Ajoute le nouveau score
+    scores.push({ pseudo: newScore });
+
+    // Trie les scores du plus grand au plus petit
+    scores.sort((a, b) => b.pseudo - a.pseudo);
+
+    // Garde les 5 meilleurs
+    scores = scores.slice(0, 5);
+
+    // Sauvegarde dans le localStorage
+    localStorage.setItem("leaderboard", JSON.stringify(scores));
+
+    // Affichage du leaderboard
+    leaderboard.innerHTML = "Leaderboard:<br>" + scores.map(s => `Score: ${s.pseudo}`).join("<br>");
 }
-
-// Gérer l'envoi du formulaire
-document.getElementById("score-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-    
-    const pseudo = document.getElementById("pseudo").value;
-    const score = parseInt(document.getElementById("score").value);
-    
-    if (pseudo && !isNaN(score)) {
-        updateLeaderboard(pseudo, score);
-        
-        // Réinitialiser les champs du formulaire après la soumission
-        document.getElementById("pseudo").value = "";
-        document.getElementById("score").value = "";
-    }
-});
-
-// Afficher le leaderboard au chargement de la page
-window.onload = function() {
-    let leaderboardData = JSON.parse(localStorage.getItem("leaderboard")) || [];
-    
-    let leaderboardHTML = "Leaderboard:<br>";
-    leaderboardData.forEach(entry => {
-        leaderboardHTML += `${entry.pseudo} - Score: ${entry.score}<br>`;
-    });
-    
-    document.getElementById("leaderboard").innerHTML = leaderboardHTML;
-};
-
-
-// Charger le leaderboard au démarrage
-document.addEventListener("DOMContentLoaded", () => {
-    let scores = localStorage.getItem("leaderboard");
-    if (scores) {
-        scores = JSON.parse(scores);
-        scores.forEach(entry => updateLeaderboard(entry.pseudo, entry.score));
-    }
-});
 
 
 window.addEventListener("keydown", (e) => keys[e.key] = true);
